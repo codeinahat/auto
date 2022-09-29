@@ -1,5 +1,5 @@
 use crate::models::commands_model::{Command};
-use crate::read::read_line::{use_default_prompt, prompt};
+use crate::read::read_line::{use_default_prompt};
 use crate::utils::sanitation;
 
 pub fn create_note() ->  Command<'static> {
@@ -105,7 +105,7 @@ fn save_note(note_name: &String, note_content: &String) -> Result<bool, std::io:
     let path = format!("{}{}","./.auto/notes/", note_name);
 
     println!("{path}");
-    
+
     std::fs::write(path, note_content)?;
 
     Ok(true)
