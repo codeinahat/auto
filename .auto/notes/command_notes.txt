@@ -1,5 +1,0 @@
-Note command:	
-    - Out source the editing to local default editor	
-    - Is coming along nicely
-Issues
-    - Keep formatting

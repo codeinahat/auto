@@ -32,7 +32,7 @@ fn note_interface(first: bool) {
 
     println!("\n");
 
-    sanitation::clean_string(&mut my_note);
+    // sanitation::clean_string(&mut my_note);
 
     let my_note: String = my_note.drain(..(my_note.chars().count() - 5)).collect();
 
@@ -72,18 +72,17 @@ fn writing_interface(text: &mut String, my_note: &mut String) {
     loop {
         std::io::stdin().read_line(text).expect("Error from STDIN");
 
-        my_note.push_str(&text);
+        my_note.push_str(text);
         
         sanitation::clean_string( text);     
-        
+    
         if text.chars().count() >= 5 {
             let count = text.chars().count() - 5;
             text.drain(..count);
         }
 
-        // println!(" from drain \n{text}\n");
-
         if  text == "--end" {
+            my_note.drain((my_note.len()-1)..);
             break;
         };
 
@@ -105,6 +104,7 @@ fn save_note(note_name: &String, note_content: &String) -> Result<bool, std::io:
     let path = format!("{}{}","./.auto/notes/", note_name);
 
     println!("{path}");
+    println!("{:?}", note_content);
 
     std::fs::write(path, note_content)?;
 
